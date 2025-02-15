@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Tic Tac Toe</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div class="game-container">
+            <h1>Tic Tac Toe</h1>
+            <div class="board">
+                <div v-for="(row, rowIndex) in board" :key="rowIndex" class="row">
+                    <div v-for="(cell, colIndex) in row" 
+                         :key="colIndex" 
+                         class="cell"
+                         :class="{ 'x': cell === 'X', 'o': cell === 'O' }"
+                         @click="makeMove(rowIndex, colIndex)">
+                        {{ cell }}
+                    </div>
+                </div>
+            </div>
+            <div class="game-info">
+                <p v-if="winner">Winner: {{ winner }}</p>
+                <p v-else-if="isDraw">Game Draw!</p>
+                <p v-else>Current Player: {{ currentPlayer }}</p>
+                <button @click="resetGame" class="reset-btn">Reset Game</button>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
